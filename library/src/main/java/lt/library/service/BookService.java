@@ -3,9 +3,11 @@ package lt.library.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import lt.library.command.BookCommand;
+import lt.library.exceptions.ResourceNotFoundException;
 import lt.library.model.Book;
 import lt.library.repository.BookRepository;
 
@@ -34,5 +36,12 @@ public class BookService {
 		book.setStatus(addedBook.getStatus());
 		bookRepository.save(book);
 
+	}
+
+	public ResponseEntity<Book> getBookByGUID(Long id) {
+		Book book = bookRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Book with GUID: " + id + " does not exist."));
+
+		return ResponseEntity.ok(book);
 	}
 }

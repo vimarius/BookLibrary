@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import lt.library.command.BookCommand;
 import lt.library.model.Book;
-import lt.library.model.BookStatus;
 import lt.library.service.BookService;
 
 @RestController
@@ -46,40 +46,46 @@ public class BookController {
 		return bookService.getBookByGUID(id);
 	}
 
-	@GetMapping("/books/{author}")
-	@ApiOperation(value = "Get a list of books by author", notes = "Filters books by author.")
-	public List<Book> filterByAuthor(@PathVariable("author") String author) {
-		return bookService.filterByAuthor(author);
+	@DeleteMapping("/books/{id}")
+	@ApiOperation(value = "Delete a book by GUID", notes = "Deletes a book by GUID.")
+	public void deleteProject(@PathVariable("id") Long id) {
+		bookService.deleteBook(id);
 	}
 
-	@GetMapping("/books/{category}")
-	@ApiOperation(value = "Get a list of books by category", notes = "Filters books by category.")
-	public List<Book> filterByCategory(@PathVariable("category") String category) {
-		return bookService.filterByCategory(category);
-	}
-
-	@GetMapping("/books/{language}")
-	@ApiOperation(value = "Get a list of books by language", notes = "Filters books by language.")
-	public List<Book> filterByLanguage(@PathVariable("language") String language) {
-		return bookService.filterByLanguage(language);
-	}
-
-	@GetMapping("/books/{isbn}")
-	@ApiOperation(value = "Get a list of books by ISBN", notes = "Filters books by ISBN.")
-	public List<Book> filterByISBN(@PathVariable("isbn") String isbn) {
-		return bookService.filterByISBN(isbn);
-	}
-
-	@GetMapping("/books/{name}")
-	@ApiOperation(value = "Get a list of books by name", notes = "Filters books by name.")
-	public List<Book> filterByName(@PathVariable("name") String name) {
-		return bookService.filterByName(name);
-	}
-
-	@GetMapping("/books/{status}")
-	@ApiOperation(value = "Get a list of books by status", notes = "Filters books by status.")
-	public List<Book> filterByStatus(@PathVariable("status") BookStatus status) {
-		return bookService.filterByStatus(status);
-	}
+//	@GetMapping("/books/{author}")
+//	@ApiOperation(value = "Get a list of books by author", notes = "Filters books by author.")
+//	public List<Book> filterByAuthor(@PathVariable("author") String author) {
+//		return bookService.filterByAuthor(author);
+//	}
+//
+//	@GetMapping("/books/{category}")
+//	@ApiOperation(value = "Get a list of books by category", notes = "Filters books by category.")
+//	public List<Book> filterByCategory(@PathVariable("category") String category) {
+//		return bookService.filterByCategory(category);
+//	}
+//
+//	@GetMapping("/books/{language}")
+//	@ApiOperation(value = "Get a list of books by language", notes = "Filters books by language.")
+//	public List<Book> filterByLanguage(@PathVariable("language") String language) {
+//		return bookService.filterByLanguage(language);
+//	}
+//
+//	@GetMapping("/books/{isbn}")
+//	@ApiOperation(value = "Get a list of books by ISBN", notes = "Filters books by ISBN.")
+//	public List<Book> filterByISBN(@PathVariable("isbn") String isbn) {
+//		return bookService.filterByISBN(isbn);
+//	}
+//
+//	@GetMapping("/books/{name}")
+//	@ApiOperation(value = "Get a list of books by name", notes = "Filters books by name.")
+//	public List<Book> filterByName(@PathVariable("name") String name) {
+//		return bookService.filterByName(name);
+//	}
+//
+//	@GetMapping("/books/{status}")
+//	@ApiOperation(value = "Get a list of books by status", notes = "Filters books by status.")
+//	public List<Book> filterByStatus(@PathVariable("status") BookStatus status) {
+//		return bookService.filterByStatus(status);
+//	}
 
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import lt.library.command.BookCommand;
 import lt.library.exceptions.ResourceNotFoundException;
 import lt.library.model.Book;
-import lt.library.model.BookStatus;
 import lt.library.repository.BookRepository;
 
 @Service
@@ -47,33 +46,38 @@ public class BookService {
 
 	}
 
-	public List<Book> filterByAuthor(String author) {
+	public void deleteBook(Long id) {
+		bookRepository.deleteById(id);
 
-		return bookRepository.filterByAuthor(author);
 	}
 
-	public List<Book> filterByCategory(String category) {
-
-		return bookRepository.filterByCategory(category);
-	}
-
-	public List<Book> filterByLanguage(String language) {
-
-		return bookRepository.filterByLanguage(language);
-	}
-
-	public List<Book> filterByISBN(String isbn) {
-
-		return bookRepository.filterByISBN(isbn);
-	}
-
-	public List<Book> filterByName(String name) {
-
-		return bookRepository.filterByName(name);
-	}
-
-	public List<Book> filterByStatus(BookStatus status) {
-
-		return bookRepository.filterByStatus(status);
-	}
+//	public List<Book> filterByAuthor(String author) {
+//
+//		return bookRepository.filterByAuthor(author);
+//	}
+//
+//	public List<Book> filterByCategory(String category) {
+//
+//		return bookRepository.filterByCategory(category);
+//	}
+//
+//	public List<Book> filterByLanguage(String language) {
+//
+//		return bookRepository.filterByLanguage(language);
+//	}
+//
+//	public List<Book> filterByISBN(String isbn) {
+//
+//		return bookRepository.filterByISBN(isbn);
+//	}
+//
+//	public List<Book> filterByName(String name) {
+//
+//		return bookRepository.filterByName(name);
+//	}
+//
+//	public List<Book> filterByStatus(BookStatus status) {
+//
+//		return bookRepository.filterByStatus(status);
+//	}
 }

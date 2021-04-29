@@ -40,7 +40,7 @@ public class BookController {
 	}
 
 	@GetMapping("/books/{id}")
-	@ApiOperation(value = "Get a book", notes = "Returns a book by GUID.")
+	@ApiOperation(value = "Get a book by GUID", notes = "Returns a book by GUID.")
 	public ResponseEntity<Book> getBookByGUID(@PathVariable("id") Long id) {
 		return bookService.getBookByGUID(id);
 	}

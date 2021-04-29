@@ -1,6 +1,8 @@
 package lt.library.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +19,11 @@ public class Book {
 	private String Language;
 	private int publicationDate;
 	private String isbn;
+	@Enumerated(EnumType.STRING)
 	private BookStatus status;
+
+	public Book() {
+	}
 
 	public Book(Long guid, String name, String author, String category, String language, int publicationDate,
 			String isbn, BookStatus status) {

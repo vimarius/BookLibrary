@@ -45,4 +45,9 @@ public class BookService {
 		return ResponseEntity.ok(book);
 
 	}
+
+	public List<Book> filterByAuthor(String author) {
+
+		return bookRepository.filterByAuthor(author);
+	}
 }

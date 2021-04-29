@@ -48,7 +48,7 @@ public class BookController {
 
 	@DeleteMapping("/books/{id}")
 	@ApiOperation(value = "Delete a book by GUID", notes = "Deletes a book by GUID.")
-	public void deleteProject(@PathVariable("id") Long id) {
+	public void deleteABook(@PathVariable("id") Long id) {
 		bookService.deleteBook(id);
 	}
 

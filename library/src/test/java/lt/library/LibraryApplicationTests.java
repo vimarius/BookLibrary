@@ -2,6 +2,7 @@ package lt.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
@@ -62,6 +63,15 @@ class LibraryApplicationTests {
 
 		Book book = new Book(1L, "name", "author", "category", "language", 1999, "isbn", BookStatus.TAKEN);
 		when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
+
+	}
+
+	@Test
+	public void deleteABookTest() {
+		Book book = new Book(1L, "name", "author", "category", "language", 1999, "isbn", BookStatus.TAKEN);
+		when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
+		bookService.deleteBook(book.getGuid());
+		verify(bookRepository).deleteById(book.getGuid());
 
 	}
 

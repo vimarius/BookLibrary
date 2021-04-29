@@ -9,12 +9,16 @@ import org.springframework.stereotype.Service;
 import lt.library.command.BookCommand;
 import lt.library.exceptions.ResourceNotFoundException;
 import lt.library.model.Book;
+import lt.library.model.User;
 import lt.library.repository.BookRepository;
+import lt.library.repository.UserRepository;
 
 @Service
 public class BookService {
 
 	private BookRepository bookRepository;
+
+	private UserRepository userRepository;
 
 	@Autowired
 	public BookService(BookRepository bookRepository) {
@@ -49,6 +53,25 @@ public class BookService {
 	public void deleteBook(Long id) {
 		bookRepository.deleteById(id);
 
+	}
+
+	public ResponseEntity<Book> takeABook(Long id, Long userId, int timeInMonths, Book bookToTake) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " does not exist."));
+
+		if (user != null && timeInMonths <= 2 && user.getUserBooks().size() < 3) {
+			Book book = bookRepository.findById(id)
+					.orElseThrow(() -> new ResourceNotFoundException("Book with GUID: " + id + " does not exist."));
+
+			book.setStatus(bookToTake.getStatus().TAKEN);
+
+			Book takenBook = bookRepository.save(book);
+
+			user.getUserBooks().add(takenBook);
+
+			return ResponseEntity.ok(takenBook);
+		}
+		return null;
 	}
 
 //	public List<Book> filterByAuthor(String author) {

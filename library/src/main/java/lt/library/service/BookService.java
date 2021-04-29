@@ -43,5 +43,6 @@ public class BookService {
 				.orElseThrow(() -> new ResourceNotFoundException("Book with GUID: " + id + " does not exist."));
 
 		return ResponseEntity.ok(book);
+
 	}
 }

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -53,6 +54,14 @@ class LibraryApplicationTests {
 			assertNotNull("New Book is not null", book);
 
 		}
+
+	}
+
+	@Test
+	public void getBookByGUIDTest() {
+
+		Book book = new Book(1L, "name", "author", "category", "language", 1999, "isbn", BookStatus.TAKEN);
+		when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
 
 	}
 

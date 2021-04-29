@@ -1,6 +1,7 @@
 package lt.library;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import lt.library.command.BookCommand;
 import lt.library.model.Book;
 import lt.library.model.BookStatus;
 import lt.library.repository.BookRepository;
@@ -35,5 +37,22 @@ class LibraryApplicationTests {
 						new Book(2L, "name1", "author1", "category1", "language1", 1999, "isbn1", BookStatus.TAKEN))
 				.collect(Collectors.toList()));
 		assertEquals(2, bookService.getAllBooks().size());
+	}
+
+	@Test
+	public void addABookTest() {
+		BookCommand book = new BookCommand();
+		book.setName("name");
+		book.setAuthor("author");
+		book.setCategory("category");
+		book.setLanguage("language");
+		book.setPublicationDate(1999);
+		book.setIsbn("isbn");
+		book.setStatus(BookStatus.TAKEN);
+		if (book != null) {
+			assertNotNull("New Book is not null", book);
+
+		}
+
 	}
 }

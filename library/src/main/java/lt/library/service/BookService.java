@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lt.library.command.BookCommand;
 import lt.library.model.Book;
 import lt.library.repository.BookRepository;
 
@@ -20,6 +21,18 @@ public class BookService {
 
 	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
+	}
+
+	public void addABook(BookCommand addedBook) {
+		Book book = new Book();
+		book.setName(addedBook.getName());
+		book.setAuthor(addedBook.getAuthor());
+		book.setCategory(addedBook.getCategory());
+		book.setLanguage(addedBook.getLanguage());
+		book.setPublicationDate(addedBook.getPublicationDate());
+		book.setIsbn(addedBook.getIsbn());
+		book.setStatus(addedBook.getStatus());
+		bookRepository.save(book);
 
 	}
 }

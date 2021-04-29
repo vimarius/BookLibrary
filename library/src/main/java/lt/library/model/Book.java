@@ -1,16 +1,16 @@
 package lt.library.model;
 
-import java.util.UUID;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private UUID guid;
+	private Long guid;
 	private String name;
 	private String author;
 	private String category;
@@ -19,7 +19,7 @@ public class Book {
 	private String isbn;
 	private BookStatus status;
 
-	public Book(UUID guid, String name, String author, String category, String language, int publicationDate,
+	public Book(Long guid, String name, String author, String category, String language, int publicationDate,
 			String isbn, BookStatus status) {
 		this.guid = guid;
 		this.name = name;
@@ -31,11 +31,11 @@ public class Book {
 		this.status = status;
 	}
 
-	public UUID getGuid() {
+	public Long getGuid() {
 		return guid;
 	}
 
-	public void setGuid(UUID guid) {
+	public void setGuid(Long guid) {
 		this.guid = guid;
 	}
 

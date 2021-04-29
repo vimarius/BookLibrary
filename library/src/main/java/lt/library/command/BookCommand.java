@@ -27,6 +27,9 @@ public class BookCommand {
 		this.status = status;
 	}
 
+	public BookCommand() {
+	}
+
 	public String getName() {
 		return name;
 	}

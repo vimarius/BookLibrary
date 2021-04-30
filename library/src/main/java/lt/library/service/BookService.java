@@ -74,6 +74,8 @@ public class BookService {
 		return null;
 	}
 
+//	Possible ways to filter.
+
 //	public List<Book> filterByAuthor(String author) {
 //
 //		return bookRepository.filterByAuthor(author);

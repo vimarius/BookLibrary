@@ -8,7 +8,9 @@ import lt.library.model.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-//	List<Book> filterByAuthor(String author);
+//	Possible ways to filter.
+
+//	Book filterByAuthor(String author);
 //
 //	List<Book> filterByCategory(String category);
 //

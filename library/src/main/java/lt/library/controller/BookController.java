@@ -62,9 +62,11 @@ public class BookController {
 
 	}
 
+//	Possible ways to filter.
+
 //	@GetMapping("/books/{author}")
 //	@ApiOperation(value = "Get a list of books by author", notes = "Filters books by author.")
-//	public List<Book> filterByAuthor(@PathVariable("author") String author) {
+//	public Book filterByAuthor(@PathVariable("author") String author) {
 //		return bookService.filterByAuthor(author);
 //	}
 //
